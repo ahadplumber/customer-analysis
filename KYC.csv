@@ -1,0 +1,57 @@
+"Price, Quality, Speed are core needs- no one wants expensive products that are produced badly and fulfilled slowly. So they are omitted.",,,,,,
+Segment,Core Job,Key Jobs,Success Indicators,Operational Needs,Key Differentiators,Critical Success Factors
+Mid-Market,"Scale custom product business efficiently while maintaining quality and margins across manufacturing relationships
+","• Customize platform to fit operations
+• Maintain quality at scale
+• Optimize pricing
+• Manage sales channels
+• Handle high-volume fulfillment (demand-planning?)","• Catalog expansion
+• Pricing accuracy
+• SLA adherence
+• Error rate tracking","• Custom contracts (MSA)
+• Dedicated success team
+• Advanced API integration
+• Credit terms management
+• Product tax management","• Custom legal/business frameworks (MSA)
+• Advanced integrations/routing
+• Team-wide adoption focus
+• Strict SLA requirements","• Integration success
+• Team training
+• Pricing accuracy
+• Process documentation
+• Quality control at scale"
+SMB-Managed,Grow custom product business with professional support,"• Set up workflows
+• Configure integrations
+• Establish quality control
+• Scale operations","• Pricing accuracy
+• SLA monitoring
+• Error management","• Routing rules setup
+• Store connection support
+• Product sync help
+• Product tax management
+• Credit terms management","• Guided platform optimization
+• Structured onboarding
+• Growth metric focus
+• Dedicated support access","• Store integration success
+• Growth milestones
+• Ticket resolution
+• Pricing optimization
+• Workflow efficiency"
+SMB-Unmanaged,Start and validate custom product business with minimal complexity,"• Catalog discovery
+• Connect sales channel
+• Configure products
+• Process first orders
+• Learn platform basics","• Store connection success
+• Product sync completion
+• First order completion","• Simple signup
+• Basic admin access
+• Store connection tools
+• Product creation support
+• Billing setup","• Self-service tools
+• Simple workflows
+• Basic setup focus
+• Ease of use over customization","• First order success
+• Platform understanding
+• Store connection completion
+• Product setup
+• Margin management"

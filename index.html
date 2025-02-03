@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Journey Map</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title-section">
+            <h1>User Journey Map</h1>
+            <div class="export-controls">
+                <button id="export-excel" class="export-btn">Go to Spreadsheet</button>
+            </div>
+        </div>
+        
+        <!-- Segment Selector -->
+        <div class="segment-selector">
+            <h3>Select Segment:</h3>
+            <div class="segment-buttons">
+                <button class="segment-btn active" data-segment="smb-unmanaged">SMB Unmanaged</button>
+                <button class="segment-btn" data-segment="smb-managed">SMB Managed</button>
+                <button class="segment-btn" data-segment="mid-market">Mid-Market/Enterprise</button>
+            </div>
+        </div>
+
+        <div class="journey-container">
+            <!-- Conversion Stage -->
+            <div class="stage-container">
+                <div class="stage-header">
+                    <h2>Conversion</h2>
+                    <span class="stage-description">Steps required to create and set up an account</span>
+                </div>
+                
+                <!-- Initial Steps -->
+                <div class="initial-steps">
+                    <div class="step" id="form" data-segments="all" data-stage="conversion">Fill out Form on Website</div>
+                    <div class="step" id="signup" data-segments="all" data-stage="conversion">Sign up</div>
+                    <div class="step" id="dashboard" data-segments="all" data-stage="conversion">Dashboard</div>
+                </div>
+            </div>
+
+            <!-- Activation Stage -->
+            <div class="stage-container">
+                <div class="stage-header">
+                    <h2>Activation</h2>
+                    <span class="stage-description">Steps required to complete first order</span>
+                </div>
+
+                <!-- Parallel Paths -->
+                <div class="paths-container">
+                    <!-- Product Creation Path -->
+                    <div class="path">
+                        <h3>Product Creation</h3>
+                        <div class="path-steps">
+                            <div class="step" id="create-product" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Create Product</div>
+                            <div class="step" id="product-hub" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Product Hub</div>
+                            <div class="step" id="product-catalog" data-segments="all" data-stage="activation">Product Catalog</div>
+                            <div class="step" id="select-sku" data-segments="all" data-stage="activation">Select SKU</div>
+                            <div class="step" id="upload-artwork" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Upload Artwork</div>
+                            <div class="step" id="download-mockup" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Download Mockup</div>
+                            <div class="step" id="publish-product" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Publish Product</div>
+                        </div>
+                    </div>
+
+                    <!-- Store Connection Path - Only for SMB -->
+                    <div class="path" data-path-segments="smb-unmanaged,smb-managed">
+                        <h3>Store Integration</h3>
+                        <div class="path-steps">
+                            <div class="step" id="connect-store" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Connect Store</div>
+                            <div class="step" id="sales-channels" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Sales Channels</div>
+                            <div class="step" id="connect-url" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Connect URL</div>
+                            <div class="step" id="sync-products" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Sync Products</div>
+                        </div>
+                    </div>
+
+                    <!-- Sample Order Path -->
+                    <div class="path" data-path-segments="all">
+                        <h3>Sample Order</h3>
+                        <div class="path-steps">
+                            <div class="step" id="order-sample" data-segments="all" data-stage="activation">Order a Sample</div>
+                            <div class="step" id="place-order" data-segments="all" data-stage="activation">Place Order</div>
+                            <div class="step" id="create-new-product" data-segments="smb-unmanaged,smb-managed" data-stage="activation">Create New Product</div>
+                        </div>
+                    </div>
+
+                    <!-- Enterprise Specific Paths -->
+                    <div class="path">
+                        <h3>Enterprise Setup</h3>
+                        <div class="path-steps">
+                            <div class="step" id="integration-testing" data-segments="enterprise" data-stage="conversion">Integration Testing</div>
+                            <div class="step" id="catalog-pricing" data-segments="enterprise" data-stage="activation">Catalog Pricing Setup</div>
+                            <div class="step" id="shipping-setup" data-segments="enterprise" data-stage="activation">Shipping Setup</div>
+                            <div class="step" id="routing-setup" data-segments="enterprise" data-stage="activation">Routing Setup</div>
+                            <div class="step" id="credit-terms" data-segments="enterprise" data-stage="activation">Credit Terms Setup</div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Path -->
+                    <div class="path">
+                        <h3>Billing Setup</h3>
+                        <div class="path-steps">
+                            <div class="step" id="billing" data-segments="all" data-stage="activation">Billing Information</div>
+                            <div class="step" id="settings-billing" data-segments="all" data-stage="activation">Settings/Billing</div>
+                        </div>
+                    </div>
+
+                    <!-- VAS Path -->
+                    <div class="path">
+                        <h3>Value Added Services</h3>
+                        <div class="path-steps">
+                            <div class="step" id="configure-vas" data-segments="all" data-stage="activation">Configure VAS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Step -->
+                <div class="final-step">
+                    <div class="step" id="first-order" data-segments="all" data-stage="activation">First Order</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <h3>Step Details</h3>
+            <div class="info-content">
+                <p>Hover over a step to see details</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Interface -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="chat-header-content">
+                <h2>AI Assistant</h2>
+                <p class="chat-subtitle">Ask questions about the journey map</p>
+            </div>
+            <button id="fullscreen-toggle" class="fullscreen-btn" aria-label="Toggle fullscreen">
+                <svg class="fullscreen-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 3L8 8M3 3V7M3 3H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17 3L12 8M17 3V7M17 3H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 17L8 12M3 17V13M3 17H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17 17L12 12M17 17V13M17 17H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="chat-messages">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        
+        <div class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Type your question..." />
+            <button id="send-message" class="send-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <div class="chat-disclaimer">
+            AI Chat is in Test Mode. It can make mistakes.
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Hidden template for AI analysis guide -->
+    <template id="analysis-guide-template">
+# Gooten User Journey Analysis Guide
+
+## Company Context
+Gooten is a print-on-demand (POD) platform that enables businesses to sell custom-printed products without holding inventory. The platform connects merchants with a global network of print manufacturing partners.
+
+## User Segments
+
+### SMB Unmanaged
+- Small to medium-sized businesses
+- Self-service customers
+- Typically new to print-on-demand
+- Focus on quick setup and ease of use
+
+### SMB Managed
+- Growing small to medium-sized businesses
+- Receive basic account management support
+- May have prior POD experience
+- Focus on scaling operations
+
+### Mid-Market/Enterprise
+- Larger businesses with significant order volume
+- Receive dedicated account management
+- Complex technical requirements
+- Focus on integration and customization
+
+## Journey Stages
+
+### Conversion Stage
+The steps required for a user to create and set up their account. This stage focuses on the initial interaction with Gooten, from discovering the platform to completing the basic account setup.
+
+### Activation Stage
+The steps required for a user to complete their first order. This stage encompasses all the necessary setup and configuration needed to become an active user of the platform.
+
+## Understanding the Steps
+
+Each step in the journey contains:
+1. **Title**: Name of the step
+2. **Stage**: Whether it's part of Conversion or Activation
+3. **User Goal**: What the user is trying to achieve
+4. **Pain Points**: Current challenges or friction points
+5. **Next Steps**: Possible subsequent steps in the journey
+
+## Path Types
+
+### Product Creation Path
+Steps involved in creating and publishing products on the platform. This is crucial for merchants who want to create their own custom products.
+
+### Store Integration Path
+Steps for connecting existing e-commerce stores with Gooten. This is essential for merchants who want to automate their order fulfillment.
+
+### Sample Order Path
+Steps for ordering product samples. This helps merchants validate product quality before selling to customers.
+
+### Enterprise Setup Path
+Specialized steps for enterprise clients, including technical integration, custom pricing, and specific configuration needs.
+
+### Billing Setup Path
+Steps related to setting up payment methods and managing billing information.
+
+### Value Added Services Path
+Steps for configuring additional services that enhance the merchant's operations.
+
+## How to Use This Data
+
+When analyzing this user journey data, consider:
+1. **Segment-Specific Needs**: How requirements differ across segments
+2. **Pain Point Patterns**: Common themes in user challenges
+3. **Journey Complexity**: Number and nature of steps for different segments
+4. **Critical Paths**: Essential steps vs. optional paths
+5. **Transition Points**: Where users move between stages
+6. **Bottlenecks**: Steps with multiple or significant pain points
+
+## Analysis Questions to Consider
+
+1. Where are the most significant pain points in the journey?
+2. How does the journey differ between segments?
+3. Which steps have the most impact on successful activation?
+4. What are the common patterns in user goals across stages?
+5. How can the journey be optimized for each segment?
+6. Where are the opportunities for automation or improved guidance?
+
+## Note on Data Format
+The accompanying CSV file contains the raw journey data. Each row represents a step in the journey, with columns for step details, user goals, and pain points. Use this data in conjunction with this guide for comprehensive analysis.
+    </template>
+</body>
+</html> 
