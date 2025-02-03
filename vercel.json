@@ -6,6 +6,6 @@
   "installCommand": "npm install",
   "outputDirectory": ".next",
   "env": {
-    "NODE_VERSION": "18.17.0"
+    "NODE_VERSION": "18.x"
   }
 } 
