@@ -1,16 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "*.html", "use": "@vercel/static" },
-    { "src": "*.css", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/static" },
-    { "src": "api/**/*.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/api/chat/start", "dest": "/api/chat/start.js" },
-    { "src": "/api/chat/message", "dest": "/api/chat/message.js" },
-    { "src": "/(.*)", "dest": "/$1" }
-  ],
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
   "headers": [
     {
       "source": "/api/(.*)",
