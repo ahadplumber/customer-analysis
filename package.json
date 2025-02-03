@@ -2,6 +2,9 @@
   "name": "user-journey-map",
   "version": "1.0.0",
   "description": "Interactive user journey map visualization",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
