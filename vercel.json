@@ -7,18 +7,9 @@
     { "src": "api/**/*.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/$1" },
-    {
-      "src": "/api/chat/start",
-      "methods": ["OPTIONS", "POST"],
-      "dest": "/api/chat/start.js"
-    },
-    {
-      "src": "/api/chat/message",
-      "methods": ["OPTIONS", "POST"],
-      "dest": "/api/chat/message.js"
-    }
+    { "src": "/api/chat/start", "dest": "/api/chat/start.js" },
+    { "src": "/api/chat/message", "dest": "/api/chat/message.js" },
+    { "src": "/(.*)", "dest": "/$1" }
   ],
   "headers": [
     {

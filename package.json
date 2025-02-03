@@ -1,11 +1,14 @@
 {
-  "name": "user-journey-map",
+  "name": "customer-analysis",
   "version": "1.0.0",
   "description": "Interactive user journey map visualization with AI chat",
+  "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "build": "echo 'No build step required'"
   },
   "dependencies": {
-    "openai": "^4.20.1"
+    "openai": "^4.28.0",
+    "@vercel/node": "^3.0.17"
   }
 } 
