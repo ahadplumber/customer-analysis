@@ -2,28 +2,18 @@
   "name": "user-journey-map",
   "version": "1.0.0",
   "description": "Interactive user journey map visualization",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "encoding": "^0.1.13",
-    "next": "^13.4.19",
-    "openai": "^4.24.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwind-merge": "^3.0.1"
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "openai": "^4.20.1",
+    "serve": "^14.2.1"
   },
   "devDependencies": {
-    "@types/node": "^22.13.0",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
-    "typescript": "^5.7.3"
+    "nodemon": "^3.0.1"
   }
-}
+} 
