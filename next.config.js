@@ -16,9 +16,6 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ['openai']
-  },
-  env: {
-    NODE_VERSION: '18.17.0'
   }
 }
 
