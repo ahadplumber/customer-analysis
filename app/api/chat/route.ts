@@ -1,4 +1,4 @@
-import { openai, ASSISTANT_ID } from '@/app/lib/openai';
+import { openai, ASSISTANT_ID } from '../../lib/openai';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -37,9 +37,15 @@ export async function POST(req: NextRequest) {
     // Get the assistant's response
     const messages_response = await openai.beta.threads.messages.list(currentThreadId);
     const lastMessage = messages_response.data[0];
+    const messageContent = lastMessage.content[0];
+
+    // Check if the content is text
+    if (messageContent.type !== 'text') {
+      throw new Error('Unexpected message content type');
+    }
 
     return NextResponse.json({
-      response: lastMessage.content[0].text.value,
+      response: messageContent.text.value,
       threadId: currentThreadId
     });
   } catch (error) {

@@ -1,4 +1,4 @@
-import { openai } from '@/app/lib/openai';
+import { openai } from '../../../lib/openai';
 import { NextResponse } from 'next/server';
 
 export async function POST() {
