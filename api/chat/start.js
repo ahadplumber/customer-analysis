@@ -18,15 +18,25 @@ module.exports = async (req, res) => {
     }
 
     if (req.method !== 'POST') {
+        console.error('Invalid method:', req.method);
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
     try {
+        if (!process.env.OPENAI_API_KEY) {
+            console.error('Missing OpenAI API key');
+            return res.status(500).json({ error: 'OpenAI API key not configured' });
+        }
+
+        console.log('Creating new thread...');
         const thread = await openai.beta.threads.create();
         console.log('Created thread:', thread.id);
         res.json({ threadId: thread.id });
     } catch (error) {
         console.error('Error creating thread:', error);
-        res.status(500).json({ error: 'Failed to create chat thread' });
+        res.status(500).json({ 
+            error: 'Failed to create chat thread',
+            details: error.message
+        });
     }
 }; 

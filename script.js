@@ -317,10 +317,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                }
+                },
+                credentials: 'same-origin'
             });
 
             if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Server error response:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    body: errorText
+                });
                 throw new Error(`Server error: ${response.status} ${response.statusText}`);
             }
 
@@ -341,6 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!message) return;
 
         if (!threadId) {
+            console.error('No thread ID available');
             addMessage("Sorry, the chat hasn't been properly initialized. Please refresh the page.", 'assistant');
             return;
         }
@@ -363,6 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'same-origin',
                 body: JSON.stringify({
                     threadId,
                     message
@@ -373,10 +382,20 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingMessage.remove();
 
             if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Server error response:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    body: errorText
+                });
                 throw new Error(`Server error: ${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
+            if (!data.response) {
+                console.error('Invalid response format:', data);
+                throw new Error('Invalid response from server');
+            }
             addMessage(data.response, 'assistant');
         } catch (error) {
             console.error('Error sending message:', error);
