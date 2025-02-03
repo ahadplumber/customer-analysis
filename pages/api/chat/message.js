@@ -1,8 +1,20 @@
 import OpenAI from 'openai';
 
+// Configure API route
+export const config = {
+  api: {
+    bodyParser: true,
+    responseLimit: false,
+    externalResolver: true
+  }
+};
+
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
+
+const MAX_RETRIES = 60; // Maximum number of retries (60 seconds)
+const RETRY_DELAY = 1000; // Delay between retries in milliseconds
 
 export default async function handler(req, res) {
     // Handle preflight request
@@ -47,19 +59,19 @@ export default async function handler(req, res) {
             assistant_id: process.env.ASSISTANT_ID
         });
 
-        // Poll for the completion
-        let response;
-        while (true) {
-            console.log('Checking run status...');
+        // Poll for the completion with timeout
+        let retries = 0;
+        while (retries < MAX_RETRIES) {
+            console.log('Checking run status... (attempt ${retries + 1}/${MAX_RETRIES})');
             const runStatus = await openai.beta.threads.runs.retrieve(threadId, run.id);
             console.log('Run status:', runStatus.status);
             
             if (runStatus.status === 'completed') {
                 // Get the assistant's response
                 const messages = await openai.beta.threads.messages.list(threadId);
-                response = messages.data[0].content[0].text.value;
+                const response = messages.data[0].content[0].text.value;
                 console.log('Got response:', response);
-                break;
+                return res.json({ response });
             } else if (runStatus.status === 'failed') {
                 console.error('Run failed:', runStatus);
                 throw new Error('Assistant run failed: ' + runStatus.last_error?.message || 'Unknown error');
@@ -67,11 +79,14 @@ export default async function handler(req, res) {
                 console.error('Run expired:', runStatus);
                 throw new Error('Assistant run expired');
             }
-            // Wait before polling again
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Wait before next retry
+            await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+            retries++;
         }
 
-        res.json({ response });
+        // If we get here, we've timed out
+        throw new Error('Request timed out waiting for assistant response');
     } catch (error) {
         console.error('Error in chat:', error);
         res.status(500).json({ 

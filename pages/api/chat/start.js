@@ -1,5 +1,13 @@
 import OpenAI from 'openai';
 
+// Configure API route
+export const config = {
+  api: {
+    bodyParser: true,
+    responseLimit: false
+  }
+};
+
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
