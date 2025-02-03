@@ -321,8 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Server error: ${errorData.details || errorData.error || response.statusText}`);
+                throw new Error(`Server error: ${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
@@ -374,8 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingMessage.remove();
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Server error: ${errorData.details || errorData.error || response.statusText}`);
+                throw new Error(`Server error: ${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
