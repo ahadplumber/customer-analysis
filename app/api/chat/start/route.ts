@@ -2,25 +2,48 @@ import { openai } from '../../../lib/openai';
 import { NextResponse } from 'next/server';
 
 export async function POST() {
-  console.log('Starting chat initialization...');
-  console.log('OpenAI API Key exists:', !!process.env.OPENAI_API_KEY);
-  console.log('Assistant ID exists:', !!process.env.ASSISTANT_ID);
-  
   try {
-    console.log('Creating thread...');
-    const thread = await openai.beta.threads.create();
-    console.log('Thread created:', thread.id);
+    // Log the request
+    console.log('POST /api/chat/start - Starting request');
     
-    return NextResponse.json({
-      threadId: thread.id
+    // Log environment variables (safely)
+    const apiKey = process.env.OPENAI_API_KEY || '';
+    const assistantId = process.env.ASSISTANT_ID || '';
+    const hasApiKey = !!apiKey;
+    const hasAssistantId = !!assistantId;
+    
+    console.log('Environment check:', {
+      hasApiKey,
+      hasAssistantId,
+      apiKeyLastChars: hasApiKey ? apiKey.slice(-4) : 'none',
+      assistantId
     });
-  } catch (error) {
-    console.error('Chat Start Error:', error);
-    // Log the full error for debugging
-    console.error('Full error:', JSON.stringify(error, null, 2));
-    
+
+    // Create thread
+    console.log('Creating OpenAI thread...');
+    const thread = await openai.beta.threads.create();
+    console.log('Thread created successfully:', thread.id);
+
+    return NextResponse.json({
+      threadId: thread.id,
+      status: 'success'
+    });
+  } catch (error: any) {
+    // Detailed error logging
+    console.error('Chat Start Error:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+      status: error.status,
+      type: error.type,
+      code: error.code
+    });
+
     return NextResponse.json(
-      { error: 'Failed to start chat' },
+      { 
+        error: 'Failed to start chat',
+        details: error.message
+      },
       { status: 500 }
     );
   }
