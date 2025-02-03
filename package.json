@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Interactive user journey map visualization with AI chat",
   "engines": {
-    "node": ">=18.17.0"
+    "node": "18.17.0"
   },
   "scripts": {
     "dev": "next dev",
@@ -12,10 +12,10 @@
     "vercel-build": "next build"
   },
   "dependencies": {
-    "next": "14.1.0",
+    "next": "^14.2.23",
+    "openai": "^4.28.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "openai": "^4.28.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",
@@ -23,4 +23,4 @@
     "@types/react": "^18.2.52",
     "typescript": "^5.3.3"
   }
-} 
+}
